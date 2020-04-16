@@ -93,15 +93,15 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1) {
     /* USER CODE END WHILE */
+    /* USER CODE BEGIN 3 */
 	  /** Application logic using HAL */
-//	  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
-//	      HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET);      // switch on LED6
-//	  } else {
-//		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET);      // switch on LED6
-//	  }
+	  //	  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)) {
+	  //	      HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET);      // switch on LED6
+	  //	  } else {
+	  //		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET);      // switch on LED6
+	  //	  }
 
 	  /** Application logic using CMSIS */
 	  if (GPIOC->IDR & (0x01 << 13)) { // If port C input register has bit set for pin 13
@@ -109,7 +109,6 @@ int main(void)
 	  } else {
 		  GPIOB->ODR &= ~(0x01 << 7); // clear pin 7 (low)
 	  }
-    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -181,6 +180,8 @@ static void MX_GPIO_Init(void) {
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 }
 
+/* USER CODE BEGIN 4 */
+
 /**
  * @brief CMSIS Initialization Function
  */
@@ -194,8 +195,6 @@ static void CMSIS_Init(void) {
 	GPIOA->PUPDR &= ~(0x03 << (13 * 2)); // Clear pullup/pulldown register
 	GPIOA->PUPDR |= (0x01 << (13 * 2)); // Set pullup
 }
-
-/* USER CODE BEGIN 4 */
 
 /* USER CODE END 4 */
 
